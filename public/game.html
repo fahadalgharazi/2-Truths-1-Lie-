@@ -8,7 +8,61 @@
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
     <script src="js/game.js"></script>
 </head>
+
 <body>
+    <section class="hero is-fullheight">
+        <div class="content">
+            <h2 class="has-text-centered mt-6">Guess!</h2>
+        </div>
+        
+        <!---Get a random database response--->
+
+        
+
+        <!---create 3 tiles, for two truths and one lie--->
+
+        <div class="tile is-ancestor">
+            <div class="tile is-parent">
+                <div class="tile is-child box">
+                    <p class="title">Tile One</p>
+                    <button class="button is-block is-fullwidth is-primary is-medium is-rounded" onclick="getResponse()">
+                        Pick this!
+                    </button>
+                </div>
+            </div>
+            <div class="tile is-parent">
+                <div class="tile is-child box">
+                    <p class="title">Tile Two</p>
+                    <button class="button is-block is-fullwidth is-primary is-medium is-rounded" onclick="getResponse()">
+                        Pick this!
+                    </button>
+                </div>
+            </div>
+            <div class="tile is-parent">
+                <div class="tile is-child box">
+                    <p class="title">Tile Three</p>
+                    <button class="button is-block is-fullwidth is-primary is-medium is-rounded" onclick="getResponse()">
+                        Pick this!
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!---clickable tiles, if one is picked we need to check for response--->
+        <!---display correct or not--->
+
+        <button class="button is-block is-fullwidth is-primary is-medium is-rounded" onclick="getResponse()">
+            Play again? 
+        </button>
+
+        <!---displays congrats message? or possibly not--->
+        <section class="container">
+            <h2 id="message" class="subtitle is-4"></h2>
+        </section>
+
+    </section>
     
-</body>
+    <script src="js/play.js"></script>
+  </body>
+
 </html>
