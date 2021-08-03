@@ -13,14 +13,15 @@ window.onload = (event) => {
 };
 
 let counter = 0;
-const sumbitResponse = () => {
+const submitResponse = () => {
     counter += 1;
   // 1. Capture the form data
   const truth1 = document.querySelector('#truth1');
   const truth2 = document.querySelector('#truth2');
   const lie = document.querySelector('#lie');
   // 2. Format the data and write it to the database
-  firebase.database().ref(`users/${googleUser.uid}/Submission/${counter}`).push({
+  console.log("Pushing to database");
+  firebase.database().ref(`users/${googleUser.uid}`).push({
     truth1: truth1.value,
     truth2: truth2.value,
     lie: lie.vlaue
