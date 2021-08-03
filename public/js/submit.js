@@ -24,7 +24,7 @@ const submitResponse = () => {
   firebase.database().ref(`users/${googleUser.uid}`).push({
     truth1: truth1.value,
     truth2: truth2.value,
-    lie: lie.vlaue
+    lie: lie.value
   })
   // 3. Clear the form so that the user can write a new submission
   .then(() => {
