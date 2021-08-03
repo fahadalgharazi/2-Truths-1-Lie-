@@ -1,5 +1,6 @@
 const signIn = () => {
   var provider = new firebase.auth.GoogleAuthProvider();
+  console.log(provider);
   firebase.auth()
   .signInWithPopup(provider)
   .then((result) => {
@@ -9,7 +10,6 @@ const signIn = () => {
 
     // The signed-in user info.
     var user = result.user;
-    // window.location = 'writeNote.html';
     window.location = 'submit.html';
   }).catch((error) => {
     // Handle Errors here.
