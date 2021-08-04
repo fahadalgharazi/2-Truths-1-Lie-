@@ -10,6 +10,7 @@ window.onload = (event) => {
     if (user) {
       console.log('Logged in as: ' + user.displayName);
       googleUser = user.uid;
+      console.log(googleUser)
       getSubmission(googleUser);
 
     } else {
@@ -29,16 +30,28 @@ const getSubmission = () => {
     // renderDataAsHtml(data);
     var userKeys = Object.keys(userData)
     console.log(userKeys);
+    
+    
+        
+
     userKeys.forEach((userKey)=>{
-        const userInfo = firebase.database().ref(`users/${userKey}`);
-        userInfo.on('value',snapshot =>{
+        if(userKey != googleUser){
+/*            
+        // const userInfo = firebase.database().ref(`users/${userKey}`);
+        // userInfo.on('value',snapshot =>{
         const userInfo = snapshot.val();
-
-    renderDataAsHtml(userInfo);
+            console.log("1")
+            renderDataAsHtml(userInfo);
             console.log(userInfo);
-        })
+        // })
+        */
 
+        const userInfo = userData[userKey];
+        console.log(userInfo);
+        renderDataAsHtml(userInfo);
+      }
     });
+
   });
 };
 
@@ -46,15 +59,19 @@ const getSubmission = () => {
 
 const renderDataAsHtml = (data) => {
   let cards = ``;
-  for(const submissionText in data) {
-    const submission = data[submissionText];
-    cards += createCard(submission, submissionText)
+  for(const submissionKey in data) {
+      if(submissionKey != googleUser){
+      console.log(submissionKey)
+    const submissionText = data[submissionKey];
+    cards += createCard(submissionText, submissionKey)
   };
+  }
   document.querySelector('#gameSection').innerHTML = cards;
 };
 
-const createCard = (submission, submissionText) => {
   let innerHTML = "";
+
+const createCard = (submissionText, submissionKey) => {
   innerHTML += `<div class="column is-one-quarter">`
   innerHTML += `<div class="card">`
   innerHTML += `<header class="card-header">`
@@ -64,19 +81,19 @@ const createCard = (submission, submissionText) => {
   innerHTML += `</header>`
   innerHTML += `<div class="card-content">`
   innerHTML += `<div class="content">`
-  innerHTML += `${submission.truth1}`
+  innerHTML += `${submissionText.truth1}`
   innerHTML += `</div>`
   innerHTML += `<div class="content">`
-  innerHTML += `${submission.truth2}`
+  innerHTML += `${submissionText.truth2}`
   innerHTML += `</div>`
   innerHTML += `<div class="content">`
-  innerHTML += `${submission.lie}`
+  innerHTML += `${submissionText.lie}`
   innerHTML += `</div>`
   innerHTML += `</div>`
   innerHTML +=  `<footer class="card-footer">`
-  innerHTML +=  `<a id="${submissionText}" href="#" class="card-footer-item" onclick="editNote(this.id)">Truth</a>`
+//   innerHTML +=  `<a id="${submissionKey}" href="#" class="card-footer-item" onclick="editNote(this.id)">Truth</a>`
   innerHTML += `<br>`
-  innerHTML +=  `<a id="${submissionText}" href="#" class="card-footer-item" onclick="deleteNote(this.id)">Lie</a>`
+//   innerHTML +=  `<a id="${submissionKey}" href="#" class="card-footer-item" onclick="deleteNote(this.id)">Lie</a>`
   innerHTML +=  `</footer>`
   innerHTML += `</div>`
   innerHTML += `</div>`
