@@ -4,15 +4,13 @@
             //display user 2 truths and a lie
                 //randomize location of the two truths and lie
 
-let googleUserId;
-let truth1String;
 window.onload = (event) => {
   // Use this to retain user state between html pages.
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       console.log('Logged in as: ' + user.displayName);
-      googleUserId = user.uid;
-      getSubmission(googleUserId);
+      googleUser = user.uid;
+      getSubmission(googleUser);
 
     } else {
     // If not logged in, navigate back to login page.
@@ -25,25 +23,35 @@ window.onload = (event) => {
 
 const getSubmission = () => {
     console.log("getting submissions")
-  const notesRef = firebase.database().ref(`users/userkey`);
-  notesRef.on('value', (snapshot) => {
-    const data = snapshot.val();
-    renderDataAsHtml(data);
-    console.log(data);
+  const userRef = firebase.database().ref(`users`);
+  userRef.on('value', (data) => {
+    const userData = data.val();
+    // renderDataAsHtml(data);
+    var userKeys = Object.keys(userData)
+    console.log(userKeys);
+    userKeys.forEach((userKey)=>{
+        const userInfo = firebase.database().ref(`users/${userKey}`);
+        userInfo.on('value',snapshot =>{
+        const userInfo = snapshot.val();
+
+    renderDataAsHtml(userInfo);
+            console.log(userInfo);
+        })
+
+    });
   });
 };
+
+
 
 const renderDataAsHtml = (data) => {
   let cards = ``;
   for(const submissionText in data) {
     const submission = data[submissionText];
-    // truth1String = `<div class="content"> ${submission.truth1} </div>`
     cards += createCard(submission, submissionText)
-    // randomSubmission += randomizer()
   };
   document.querySelector('#gameSection').innerHTML = cards;
 };
-    // truth1String = "`<div class="`content"> ${submission.truth1} </div>`"
 
 const createCard = (submission, submissionText) => {
   let innerHTML = "";
@@ -55,15 +63,15 @@ const createCard = (submission, submissionText) => {
   innerHTML += `</p>`
   innerHTML += `</header>`
   innerHTML += `<div class="card-content">`
-//   innerHTML += `<div class="content">`
-//   innerHTML += `${submission.truth1}`
-//   innerHTML += `</div>`
-//   innerHTML += `<div class="content">`
-//   innerHTML += `${submission.truth2}`
-//   innerHTML += `</div>`
-//   innerHTML += `<div class="content">`
-//   innerHTML += `${submission.lie}`
-//   innerHTML += `</div>`
+  innerHTML += `<div class="content">`
+  innerHTML += `${submission.truth1}`
+  innerHTML += `</div>`
+  innerHTML += `<div class="content">`
+  innerHTML += `${submission.truth2}`
+  innerHTML += `</div>`
+  innerHTML += `<div class="content">`
+  innerHTML += `${submission.lie}`
+  innerHTML += `</div>`
   innerHTML += `</div>`
   innerHTML +=  `<footer class="card-footer">`
   innerHTML +=  `<a id="${submissionText}" href="#" class="card-footer-item" onclick="editNote(this.id)">Truth</a>`
@@ -75,11 +83,3 @@ const createCard = (submission, submissionText) => {
 
   return innerHTML;
 };
-
-// truth1String = `<div class="content"> ${submission.truth1} </div>`
-console.log(truth1String);
-console.log("asd");
-
-const randomizer = () =>{
-    submissionArray = []
-}
