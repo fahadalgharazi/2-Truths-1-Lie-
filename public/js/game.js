@@ -3,7 +3,7 @@
         //get user 2 truth and a lie    
             //display user 2 truths and a lie
                 //randomize location of the two truths and lie
-
+let googleUser;
 window.onload = (event) => {
   // Use this to retain user state between html pages.
   firebase.auth().onAuthStateChanged(function(user) {
@@ -31,7 +31,7 @@ const getSubmission = () => {
     var userKeys = Object.keys(userData)
     console.log(userKeys);
     
-    
+    console.log("this user "+ googleUser);
         
 
     userKeys.forEach((userKey)=>{
@@ -50,6 +50,9 @@ const getSubmission = () => {
         console.log(userInfo);
         renderDataAsHtml(userInfo);
       }
+      else{
+          console.log("error")
+      }
     });
 
   });
@@ -60,18 +63,20 @@ const getSubmission = () => {
 const renderDataAsHtml = (data) => {
   let cards = ``;
   for(const submissionKey in data) {
-      if(submissionKey != googleUser){
+
+          console.log(googleUser)
       console.log(submissionKey)
     const submissionText = data[submissionKey];
     cards += createCard(submissionText, submissionKey)
-  };
+
   }
   document.querySelector('#gameSection').innerHTML = cards;
 };
 
-  let innerHTML = "";
 
 const createCard = (submissionText, submissionKey) => {
+
+  let innerHTML = "";
   innerHTML += `<div class="column is-one-quarter">`
   innerHTML += `<div class="card">`
   innerHTML += `<header class="card-header">`
