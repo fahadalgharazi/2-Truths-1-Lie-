@@ -50,10 +50,41 @@ const renderDataAsHtml = (data) => {
   for (const submissionKey in data) {
     console.log(submissionKey);
     const submissionText = data[submissionKey];
+    // cards += randTruthLie(submissionText, submissionKey);
     cards += createCard(submissionText, submissionKey);
+
   }
   document.querySelector("#gameSection").innerHTML += cards;
 };
+
+// const createCard = (submissionText, submissionKey) => {
+//   let innerHTML = "";
+//   innerHTML += `<div class="card-content">`;
+//   innerHTML += `<div class="content">`;
+//   innerHTML += `${submissionText.truth1}`;
+//   innerHTML += `</div>`;
+//   innerHTML +=  `<a id="${submissionText.truth1}" href="#" class="card-footer-item" onclick="correct()">Truth</a>`
+//   innerHTML += `<br>`;
+//   innerHTML +=  `<a id="${submissionText.lie}" href="#" class="card-footer-item" onclick="incorrect()">Lie</a>`
+//   innerHTML += `<div class="content">`;
+//   innerHTML += `${submissionText.truth2}`;
+//   innerHTML += `</div>`;
+//   innerHTML +=  `<a id="${submissionText.truth2}" href="#" class="card-footer-item" onclick="correct()">Truth</a>`
+//   innerHTML += `<br>`;
+//   innerHTML +=  `<a id="${submissionText.lie}" href="#" class="card-footer-item" onclick="incorrect()">Lie</a>`
+//   innerHTML += `<div class="content">`;
+//   innerHTML += `${submissionText.lie}`;
+//   innerHTML += `</div>`;
+//    innerHTML +=  `<a id="wrong" href="#" class="card-footer-item" onclick="incorrect()">Truth</a>`
+//   innerHTML += `<br>`;
+//   innerHTML +=  `<a id="${submissionText.lie}" href="#" class="card-footer-item" onclick="correct()">Lie</a>`
+
+//   innerHTML += `</div>`;
+
+
+// //   return innerHTML;
+// };
+
 
 const createCard = (submissionText, submissionKey) => {
   let innerHTML = "";
@@ -68,23 +99,23 @@ const createCard = (submissionText, submissionKey) => {
   innerHTML += `<div class="content">`;
   innerHTML += `${submissionText.truth1}`;
   innerHTML += `</div>`;
-  innerHTML +=  `<a id="${submissionText.truth1}" href="#" class="card-footer-item" onclick="correct()">Truth</a>`
+  innerHTML +=  `<a id="${submissionText.truth1}" class="card-footer-item" onclick="correct()">Truth</a>`
   innerHTML += `<br>`;
-  innerHTML +=  `<a id="${submissionText.lie}" href="#" class="card-footer-item" onclick="incorrect()">Lie</a>`
+  innerHTML +=  `<a id="${submissionText.lie}" class="card-footer-item" onclick="incorrect()">Lie</a>`
   innerHTML += `<div class="content">`;
   innerHTML += `${submissionText.truth2}`;
   innerHTML += `</div>`;
-  innerHTML +=  `<a id="${submissionText.truth2}" href="#" class="card-footer-item" onclick="correct()">Truth</a>`
+  innerHTML +=  `<a id="${submissionText.truth2}" class="card-footer-item" onclick="correct()">Truth</a>`
   innerHTML += `<br>`;
-  innerHTML +=  `<a id="${submissionText.lie}" href="#" class="card-footer-item" onclick="incorrect()">Lie</a>`
+  innerHTML +=  `<a id="${submissionText.lie}" class="card-footer-item" onclick="incorrect()">Lie</a>`
   innerHTML += `<div class="content">`;
   innerHTML += `${submissionText.lie}`;
   innerHTML += `</div>`;
   innerHTML += `</div>`;
   innerHTML += `<footer class="card-footer">`;
-  innerHTML +=  `<a id="Wrong" href="#" class="card-footer-item" onclick="incorrect()">Truth</a>`
+  innerHTML +=  `<a id="Wrong" class="card-footer-item" onclick="incorrect()">Truth</a>`
   innerHTML += `<br>`;
-  innerHTML +=  `<a id="${submissionText.lie}" href="#" class="card-footer-item" onclick="correct()">Lie</a>`
+  innerHTML +=  `<a id="${submissionText.lie}"  class="card-footer-item" onclick="correct()">Lie</a>`
   innerHTML += `</footer>`;
   innerHTML += `</div>`;
   innerHTML += `</div>`;
