@@ -5,7 +5,7 @@
                 //randomize location of the two truths and lie
 
 let googleUser;
-
+let userData;
 window.onload = (event) => {
   // Use this to retain user state between html pages.
   firebase.auth().onAuthStateChanged(function (user) {
@@ -68,20 +68,38 @@ const createCard = (submissionText, submissionKey) => {
   innerHTML += `<div class="content">`;
   innerHTML += `${submissionText.truth1}`;
   innerHTML += `</div>`;
+  innerHTML +=  `<a id="${submissionText.truth1}" href="#" class="card-footer-item" onclick="correct()">Truth</a>`
+  innerHTML += `<br>`;
+  innerHTML +=  `<a id="${submissionText.lie}" href="#" class="card-footer-item" onclick="incorrect()">Lie</a>`
   innerHTML += `<div class="content">`;
   innerHTML += `${submissionText.truth2}`;
   innerHTML += `</div>`;
+  innerHTML +=  `<a id="${submissionText.truth2}" href="#" class="card-footer-item" onclick="correct()">Truth</a>`
+  innerHTML += `<br>`;
+  innerHTML +=  `<a id="${submissionText.lie}" href="#" class="card-footer-item" onclick="incorrect()">Lie</a>`
   innerHTML += `<div class="content">`;
   innerHTML += `${submissionText.lie}`;
   innerHTML += `</div>`;
   innerHTML += `</div>`;
   innerHTML += `<footer class="card-footer">`;
-  //   innerHTML +=  `<a id="${submissionKey}" href="#" class="card-footer-item" onclick="editNote(this.id)">Truth</a>`
+  innerHTML +=  `<a id="Wrong" href="#" class="card-footer-item" onclick="incorrect()">Truth</a>`
   innerHTML += `<br>`;
-  //   innerHTML +=  `<a id="${submissionKey}" href="#" class="card-footer-item" onclick="deleteNote(this.id)">Lie</a>`
+  innerHTML +=  `<a id="${submissionText.lie}" href="#" class="card-footer-item" onclick="correct()">Lie</a>`
   innerHTML += `</footer>`;
   innerHTML += `</div>`;
   innerHTML += `</div>`;
 
   return innerHTML;
 };
+let scoreCard 
+let score = 0;
+    const correct = () => {
+        score = score + 1
+        console.log(score)
+       scoreCard = document.querySelector("#scoreCard").innerHTML = score        
+    }
+
+
+    const incorrect = () => {
+        console.log("Try again")
+    }
