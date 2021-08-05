@@ -30,31 +30,37 @@
             </div>
         </nav>
     </div>
-    <h1 class="title is-2 has-text-centered">2 Truths and 1 Lie</h1>
-    <h2 class="subtitle is-4 has-text-centered"> Enter in your truths and lies </h2>
+    <div class="block">
+        <h1 class="title is-2 has-text-centered">2 Truths and 1 Lie</h1>
+    </div>
+    <div class="block">
+        <h2 class="subtitle is-4 has-text-centered"> Enter in your truths and lies </h2>
+    </div>
     <section class="hero is-small is-primary">
       <div class="hero-body has-text-centered">
-        <div class="field">
+        <div class="column is-two-thirds is-offset-2">
             <div class="control">
                 <input class="input is-info is-medium is-rounded" type="text" id="truth1" placeholder="Enter a truth" required />
             </div>
         </div>
     </br>
-        <div class="field">
+        <div class="column is-two-thirds is-offset-2">
             <div class="control">
             <input class="input is-info is-medium is-rounded" type="text" id="truth2" placeholder="Enter another truth" required />
             </div>
         </div>
     </br>
-        <div class="field">
+        <div class="column is-two-thirds is-offset-2">
             <div class="control">
             <input class="input is-info is-medium is-rounded" type="text" id="lie" placeholder="Enter a lie" required />
             </div>
         </div>
     </br>
-        <button class="button is-block is-fullwidth is-link is-medium is-rounded" onclick="submitResponse()">
+        <div class="buttons is-centered">
+            <button class="button is-block is-medium is-link is-rounded has-text-centered" onclick="submitResponse()">
             Submit
-        </button>
+            </button>
+        </div>
       </div>
     </section>
 
