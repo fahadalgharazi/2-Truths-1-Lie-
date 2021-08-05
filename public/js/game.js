@@ -96,7 +96,11 @@ let score = 0;
     const correct = () => {
         score = score + 1
         console.log(score)
-       scoreCard = document.querySelector("#scoreCard").innerHTML = score        
+       scoreCard = document.querySelector("#scoreCard").innerHTML = score;
+  
+        if (score == 8) {
+            window.location = "win.html"
+      }          
     }
 
 
