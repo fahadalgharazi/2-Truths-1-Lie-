@@ -138,3 +138,24 @@ let score = 0;
     const incorrect = () => {
         console.log("Try again")
     }
+
+var texts = {
+    "truth1": "placeholder",
+    "truth2": "placeholder",
+    "truth3": "placeholder"
+
+}
+
+const shuffle = () => {
+    let myArr = ['truth1', 'truth2', 'lie'];
+    for (let i=0; i<myArr.length; i++){
+        let rand = Math.floor(Math.random()*(2-0+1))+0;
+        if(myArr[rand] === 'lie'){
+            texts.truth3 = "lie";
+        } else {
+            texts.truth[rand] = `truth${rand}`;
+        }
+        myArr.splice(rand,1);
+    }
+    
+}
